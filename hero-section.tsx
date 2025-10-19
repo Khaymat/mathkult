@@ -33,7 +33,6 @@ export default function HeroSection() {
 
           <ul className="mt-4 grid gap-2 text-sm text-muted-foreground md:grid-cols-3">
             <li>• Dukungan LaTeX (KaTeX)</li>
-            <li>• Artikel MDX</li>
             <li>• Mini sandbox interaktif</li>
           </ul>
         </div>
@@ -46,7 +45,7 @@ export default function HeroSection() {
             <li>Keuangan: bunga majemuk & arus kas diskonto</li>
           </ul>
           <div className="mt-6 rounded-lg bg-muted p-4 text-sm">
-            Santai, jelas, tanpa drama—belajar yang relevan dan praktis.
+            Santai, jelas, tanpa drama...belajar yang relevan dan praktis.
           </div>
         </div>
       </div>
