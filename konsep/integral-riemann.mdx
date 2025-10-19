@@ -1,0 +1,40 @@
+---
+title: "Integral Riemann"
+category: "Matematika"
+summary: "Memahami definisi formal dari integral tentu menggunakan penjumlahan Riemann, konsep dasar di balik kalkulus integral untuk menghitung luas di bawah kurva."
+faq:
+  - question: "Apa perbedaan antara integral Riemann dan integral tak tentu?"
+    answer: "Integral Riemann adalah integral tentu, yang menghasilkan sebuah nilai numerik tunggal yang merepresentasikan luas di bawah kurva antara dua batas. Integral tak tentu (antiturunan) menghasilkan sebuah keluarga fungsi, bukan sebuah angka."
+  - question: "Apakah semua fungsi dapat diintegralkan secara Riemann?"
+    answer: "Tidak. Sebuah fungsi harus 'berperilaku baik' agar dapat diintegralkan secara Riemann. Secara teknis, sebuah fungsi terbatas pada interval tertutup dapat diintegralkan jika dan hanya jika himpunan titik-titik diskontinuitasnya memiliki ukuran nol. Namun, sebagian besar fungsi yang ditemui dalam kalkulus dasar, seperti fungsi kontinu dan fungsi monoto, dapat diintegralkan."
+---
+
+# Integral Riemann: Mendefinisikan Luas di Bawah Kurva
+
+Dalam matematika, **Integral Riemann**, yang dinamai menurut matematikawan Jerman Bernhard Riemann, adalah definisi formal pertama dari integral sebuah fungsi pada sebuah interval. Ini adalah cara yang teliti untuk mendefinisikan konsep intuitif dari "luas di bawah kurva."
+
+## Ide Intuitif
+
+Bayangkan Anda ingin menemukan luas area di bawah grafik fungsi non-negatif $f(x)$ antara dua titik, $a$ dan $b$. Ide dasar dari integral Riemann adalah untuk mendekati area ini dengan menggunakan sejumlah besar persegi panjang vertikal yang sangat tipis.
+
+Jumlah luas dari semua persegi panjang ini akan memberikan aproksimasi dari luas total. Semakin banyak persegi panjang yang kita gunakan (dan semakin tipis mereka), semakin baik aproksimasi yang kita dapatkan. Integral Riemann adalah nilai limit dari jumlah ini saat lebar persegi panjang mendekati nol.
+
+## Penjumlahan Riemann
+
+Untuk memformalkannya, kita mulai dengan **partisi** dari interval $[a, b]$, yang membaginya menjadi subinterval yang lebih kecil:
+$$ a = x_0 < x_1 < x_2 < \\dots < x_n = b $$
+
+Di setiap subinterval $[x_{i-1}, x_i]$, kita memilih sebuah titik sampel $t_i$. Kita kemudian membuat sebuah persegi panjang dengan lebar $\\Delta x_i = x_i - x_{i-1}$ dan tinggi $f(t_i)$.
+
+**Jumlah Riemann** dari fungsi $f$ terhadap partisi ini adalah jumlah luas dari semua persegi panjang ini:
+$$ S_n = \\sum_{i=1}^{n} f(t_i) \\Delta x_i $$
+
+## Definisi Formal Integral
+
+Integral Riemann dari $f$ dari $a$ ke $b$, yang dilambangkan dengan $\\int_a^b f(x) \\,dx$, didefinisikan sebagai limit dari jumlah Riemann saat panjang partisi terbesar mendekati nol.
+
+$$ \\int_a^b f(x) \\,dx = \\lim_{\\|\\Delta x\\| \\to 0} \\sum_{i=1}^{n} f(t_i) \\Delta x_i $$
+
+Jika limit ini ada dan tidak bergantung pada pilihan titik sampel $t_i$, maka fungsi $f$ dikatakan dapat diintegralkan secara Riemann pada interval $[a, b]$.
+
+Konsep ini adalah salah satu pilar dari kalkulus dan analisis matematika, yang memungkinkan perhitungan yang tepat dari luas, volume, dan akumulasi lainnya.

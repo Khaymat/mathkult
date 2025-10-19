@@ -1,0 +1,46 @@
+---
+title: "Mean, Median, dan Modus"
+category: "Matematika"
+summary: "Tiga ukuran tendensi sentral yang paling umum digunakan untuk menggambarkan 'pusat' atau nilai tipikal dari suatu kumpulan data."
+faq:
+  - question: "Kapan saya harus menggunakan median daripada mean?"
+    answer: "Gunakan median ketika kumpulan data Anda memiliki pencilan (outlier) atau distribusinya miring (skewed). Mean sangat sensitif terhadap nilai ekstrem, yang dapat 'menarik' rata-rata ke arah yang tidak representatif. Median, sebagai nilai tengah, tidak terpengaruh oleh pencilan."
+  - question: "Bisakah sebuah kumpulan data memiliki lebih dari satu modus?"
+    answer: "Ya. Jika ada dua nilai yang muncul dengan frekuensi tertinggi yang sama, kumpulan data tersebut disebut bimodal. Jika lebih dari dua, disebut multimodal. Jika semua nilai muncul dengan frekuensi yang sama, maka tidak ada modus."
+---
+
+# Ukuran Tendensi Sentral: Mean, Median, dan Modus
+
+Dalam statistik deskriptif, **ukuran tendensi sentral** adalah nilai tunggal yang mencoba untuk menggambarkan pusat dari suatu distribusi data. Tiga ukuran yang paling umum digunakan adalah mean, median, dan modus. Masing-masing memberikan perspektif yang sedikit berbeda tentang "nilai tipikal" dalam data.
+
+## Mean (Rata-rata)
+
+**Mean**, atau rata-rata aritmatika, adalah ukuran yang paling umum. Ini dihitung dengan menjumlahkan semua nilai dalam kumpulan data dan kemudian membaginya dengan jumlah nilai.
+
+Formula untuk mean populasi ($\\mu$) atau sampel ($\\bar{x}$) adalah:
+$$ \\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n} $$
+
+- **Kelebihan**: Mudah dihitung dan menggunakan semua data dalam perhitungannya.
+- **Kelemahan**: Sangat sensitif terhadap nilai ekstrem atau pencilan (*outliers*).
+
+**Contoh**: Untuk data `[2, 3, 4, 7, 7, 15]`, mean adalah `(2+3+4+7+7+15) / 6 = 38 / 6 ≈ 6.33`.
+
+## Median
+
+**Median** adalah nilai tengah dari kumpulan data yang telah diurutkan dari yang terkecil hingga yang terbesar.
+- Jika jumlah data ganjil, median adalah nilai yang berada tepat di tengah.
+- Jika jumlah data genap, median adalah rata-rata dari dua nilai tengah.
+
+- **Kelebihan**: Tidak terpengaruh oleh pencilan, menjadikannya ukuran yang lebih baik untuk data yang miring.
+- **Kelemahan**: Tidak menggunakan semua informasi dari data.
+
+**Contoh**: Untuk data yang diurutkan `[2, 3, 4, 7, 7, 15]`, dua nilai tengah adalah `4` dan `7`. Median adalah `(4+7) / 2 = 5.5`.
+
+## Modus
+
+**Modus** adalah nilai yang paling sering muncul dalam kumpulan data. Sebuah kumpulan data bisa tidak memiliki modus, satu modus (unimodal), atau beberapa modus (multimodal).
+
+- **Kelebihan**: Mudah ditemukan dan merupakan satu-satunya ukuran tendensi sentral yang dapat digunakan untuk data kategorikal (non-numerik).
+- **Kelemahan**: Bisa jadi tidak ada atau tidak unik, dan seringkali tidak representatif untuk data numerik.
+
+**Contoh**: Untuk data `[2, 3, 4, 7, 7, 15]`, modus adalah `7` karena muncul dua kali, lebih sering daripada angka lainnya.

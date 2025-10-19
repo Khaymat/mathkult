@@ -1,0 +1,43 @@
+---
+title: "Deret Geometri"
+category: "Matematika"
+summary: "Memahami konsep deret geometri, sebuah barisan bilangan di mana setiap suku setelah yang pertama ditemukan dengan mengalikan suku sebelumnya dengan bilangan tetap."
+faq:
+  - question: "Apa itu 'rasio umum' dalam deret geometri?"
+    answer: "Rasio umum (dilambangkan dengan 'r') adalah bilangan tetap yang digunakan untuk mengalikan setiap suku untuk mendapatkan suku berikutnya. Jika r > 1, deret akan tumbuh secara eksponensial. Jika 0 < r < 1, deret akan menyusut menuju nol."
+  - question: "Apakah deret geometri tak hingga bisa memiliki jumlah?"
+    answer: "Ya, jika nilai absolut dari rasio umumnya kurang dari 1 (yaitu, |r| < 1), deret geometri tak hingga akan konvergen ke sebuah jumlah terbatas. Jumlah ini dapat dihitung dengan rumus S = a / (1 - r)."
+---
+
+# Memahami Deret Geometri
+
+Sebuah **deret geometri** adalah barisan bilangan di mana setiap suku setelah yang pertama ditemukan dengan mengalikan suku sebelumnya dengan konstanta non-nol yang disebut **rasio umum** (dilambangkan dengan $r$).
+
+Sebagai contoh, barisan `2, 6, 18, 54, ...` adalah deret geometri dengan suku pertama ($a$) adalah 2 dan rasio umum ($r$) adalah 3.
+
+## Formula Penting
+
+Ada beberapa formula kunci yang terkait dengan deret geometri:
+
+**1. Suku ke-n:**
+Untuk menemukan nilai dari suku ke-$n$ dalam deret, Anda dapat menggunakan formula:
+$$ a_n = a \\cdot r^{n-1} $$
+Di mana $a$ adalah suku pertama dan $r$ adalah rasio umum.
+
+**2. Jumlah n Suku Pertama (Deret Geometri Finit):**
+Untuk menghitung jumlah dari $n$ suku pertama dari sebuah deret, rumusnya adalah:
+$$ S_n = a \\frac{1 - r^n}{1 - r} $$
+Formula ini sangat berguna dalam berbagai aplikasi keuangan, seperti menghitung nilai masa depan dari anuitas.
+
+**3. Jumlah Deret Geometri Tak Hingga:**
+Jika rasio umum $r$ berada di antara -1 dan 1 (yaitu, $|r| < 1$), deret tersebut konvergen, artinya jumlah dari semua sukunya mendekati sebuah nilai terbatas. Jumlah ini dihitung dengan:
+$$ S_{\\infty} = \\frac{a}{1 - r} $$
+Konsep ini adalah dasar dari banyak paradoks matematika, seperti Paradoks Zeno.
+
+## Aplikasi
+
+Deret geometri memiliki aplikasi yang luas di berbagai bidang:
+- **Keuangan**: Menghitung bunga majemuk, nilai anuitas, dan pembayaran hipotek.
+- **Fisika**: Memodelkan peluruhan radioaktif atau jarak yang ditempuh oleh bola yang memantul.
+- **Ilmu Komputer**: Menganalisis kompleksitas beberapa algoritma.
+- **Biologi**: Memodelkan pertumbuhan populasi dalam kondisi ideal.

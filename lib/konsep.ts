@@ -2,7 +2,12 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 
-const kontenDir = path.join(process.cwd(), "konten/konsep")
+const kontenDir = path.join(process.cwd(), "konsep")
+
+export type FAQ = {
+  question: string
+  answer: string
+}
 
 export type Konsep = {
   slug: string
@@ -10,6 +15,7 @@ export type Konsep = {
   category: "Matematika" | "Algoritma" | "Finansial"
   summary: string
   body: string
+  faq?: FAQ[]
 }
 
 export function getAllKonsep(): Konsep[] {
@@ -25,7 +31,8 @@ export function getAllKonsep(): Konsep[] {
       title: matterResult.data.title,
       category: matterResult.data.category,
       summary: matterResult.data.summary,
-      body: matterResult.content, // Use only the content, not the full file
+      body: matterResult.content,
+      faq: matterResult.data.faq || [],
     } as Konsep
   })
   return allKonsepData
@@ -44,6 +51,7 @@ export function getKonsepBySlug(slug: string): Konsep | undefined {
     title: matterResult.data.title,
     category: matterResult.data.category,
     summary: matterResult.data.summary,
-    body: matterResult.content, // Use only the content
+    body: matterResult.content,
+    faq: matterResult.data.faq || [],
   } as Konsep
 }
