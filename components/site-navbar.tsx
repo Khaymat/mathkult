@@ -4,12 +4,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/konsep", label: "Konsep" },
   { href: "/praktek", label: "Praktek" },
-  { href: "/tentang", label: "Tentang" },
 ]
 
 export default function SiteNavbar() {
@@ -22,22 +22,25 @@ export default function SiteNavbar() {
           <span className="font-semibold">Mathkult</span>
         </Link>
 
-        <nav className="flex items-center gap-3">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "px-3 py-1.5 rounded-md text-sm transition-colors",
-                pathname === l.href
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted",
-              )}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-3">
+          <nav className="hidden items-center gap-3 md:flex">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "px-3 py-1.5 rounded-md text-sm transition-colors",
+                  pathname === l.href
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted",
+                )}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )
