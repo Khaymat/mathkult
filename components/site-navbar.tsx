@@ -18,7 +18,13 @@ export default function SiteNavbar() {
     <header className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/50">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/images/mathkult-logo.png" alt="Logo Mathkult" width={28} height={28} className="rounded-full" />
+          <Image
+            src="/images/mathkult-logo.png"
+            alt="Logo Mathkult"
+            width={28}
+            height={28}
+            className="rounded-full aspect-square object-cover"
+          />
           <span className="font-semibold">Mathkult</span>
         </Link>
 

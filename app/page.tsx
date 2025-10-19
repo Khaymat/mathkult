@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
+import HeroBackground from '@/components/hero-background'
 
 export default function HomePage() {
   return (
-    <main className="container mx-auto flex min-h-[calc(100vh-10rem)] items-center justify-center px-4 py-16">
+    <main className="container relative mx-auto flex min-h-[calc(100vh-10rem)] items-center justify-center px-4 py-16">
+      <HeroBackground />
       <div className="max-w-2xl text-center space-y-8">
 
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Belajar itu nggak harus ribet.
         </h1>
 
