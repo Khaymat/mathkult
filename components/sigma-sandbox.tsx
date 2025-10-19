@@ -33,9 +33,9 @@ export default function SigmaSandbox({ mode = "linear" }: Props) {
           </div>
         </div>
 
-        <div className="rounded-md border border-dashed p-3 text-sm">
+        <div className="flex flex-wrap gap-2 rounded-md border border-dashed p-3 text-sm">
           {arr.map((v) => (
-            <span key={v} className="mr-2 rounded border px-2 py-0.5">
+            <span key={v} className="rounded border px-2 py-0.5">
               {mode === "square" ? v * v : v}
             </span>
           ))}

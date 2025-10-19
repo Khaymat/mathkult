@@ -19,6 +19,13 @@ const GcdSandbox: React.FC = () => {
     const [steps, setSteps] = useState<GcdStep[]>([]);
     const [gcd, setGcd] = useState<number | null>(null);
 
+    const handleClear = () => {
+        setNumA(48);
+        setNumB(18);
+        setSteps([]);
+        setGcd(null);
+    };
+
     const runEuclideanAlgorithm = () => {
         let a = Math.abs(numA);
         let b = Math.abs(numB);
@@ -64,7 +71,10 @@ const GcdSandbox: React.FC = () => {
                         <Input id="numB" type="number" value={numB} onChange={e => setNumB(Number(e.target.value))} />
                     </div>
                 </div>
-                <Button onClick={runEuclideanAlgorithm}>Cari FPB</Button>
+                <div className="flex gap-4">
+                    <Button onClick={runEuclideanAlgorithm}>Cari FPB</Button>
+                    <Button variant="outline" onClick={handleClear}>Hapus</Button>
+                </div>
                 {steps.length > 0 && (
                     <div className="pt-4 space-y-2">
                         <h3 className="font-semibold">Langkah-langkah:</h3>
