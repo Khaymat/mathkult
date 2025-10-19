@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   keywords: ["matematika", "algoritma", "logika", "finansial", "pemrograman", "belajar"],
   authors: [{ name: "Mathkult" }],
   creator: "Mathkult",
+  generator: "Mathkult",
 }
 
 export default function RootLayout({
