@@ -1,5 +1,6 @@
 import fs from "fs"
 import path from "path"
+import matter from "gray-matter"
 
 const kontenDir = path.join(process.cwd(), "konten/konsep")
 
@@ -11,51 +12,38 @@ export type Konsep = {
   body: string
 }
 
-export async function getAllKonsep(): Promise<Konsep[]> {
+export function getAllKonsep(): Konsep[] {
   const files = fs.readdirSync(kontenDir)
   const allKonsepData = files.map((fileName) => {
     const slug = fileName.replace(/\\.mdx$/, "")
     const filePath = path.join(kontenDir, fileName)
     const fileContent = fs.readFileSync(filePath, "utf8")
-    // Simple frontmatter parsing, can be improved with a library like gray-matter
-    const titleMatch = fileContent.match(/title: "(.*)"/)
-    const categoryMatch = fileContent.match(/category: "(.*)"/)
-    const summaryMatch = fileContent.match(/summary: "(.*)"/)
-
-    const title = titleMatch ? titleMatch[1] : "Untitled"
-    const category = categoryMatch ? (categoryMatch[1] as Konsep["category"]) : "Matematika"
-    const summary = summaryMatch ? summaryMatch[1] : "No summary available."
+    const matterResult = matter(fileContent)
 
     return {
       slug,
-      title,
-      category,
-      summary,
-      body: fileContent,
-    }
+      title: matterResult.data.title,
+      category: matterResult.data.category,
+      summary: matterResult.data.summary,
+      body: matterResult.content, // Use only the content, not the full file
+    } as Konsep
   })
   return allKonsepData
 }
 
-export async function getKonsepBySlug(slug: string): Promise<Konsep | undefined> {
+export function getKonsepBySlug(slug: string): Konsep | undefined {
   const filePath = path.join(kontenDir, `${slug}.mdx`)
   if (!fs.existsSync(filePath)) {
     return undefined
   }
   const fileContent = fs.readFileSync(filePath, "utf8")
-  const titleMatch = fileContent.match(/title: "(.*)"/)
-  const categoryMatch = fileContent.match(/category: "(.*)"/)
-  const summaryMatch = fileContent.match(/summary: "(.*)"/)
-
-  const title = titleMatch ? titleMatch[1] : "Untitled"
-  const category = categoryMatch ? (categoryMatch[1] as Konsep["category"]) : "Matematika"
-  const summary = summaryMatch ? summaryMatch[1] : "No summary available."
+  const matterResult = matter(fileContent)
 
   return {
     slug,
-    title,
-    category,
-    summary,
-    body: fileContent,
-  }
+    title: matterResult.data.title,
+    category: matterResult.data.category,
+    summary: matterResult.data.summary,
+    body: matterResult.content, // Use only the content
+  } as Konsep
 }

@@ -1,4 +1,5 @@
 import MdxContent from "@/components/mdx-content"
+import BackButton from "@/components/back-button"
 import { getAllKonsep, getKonsepBySlug } from "@/lib/konsep"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
@@ -36,11 +37,14 @@ export default async function KonsepPage({ params }: { params: { slug: string } 
 
   return (
     <main className="container mx-auto px-4 py-10">
-       <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      <article className="prose dark:prose-invert">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="mb-8">
+        <BackButton href="/konsep" text="Kembali ke semua konsep" />
+      </div>
+      <article className="prose dark:prose-invert max-w-none">
         <MdxContent source={konsep.body} />
       </article>
     </main>
