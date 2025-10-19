@@ -1,68 +1,84 @@
 "use client"
 
-import { useMemo, useState, Fragment } from "react"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-function gcdSteps(a0: number, b0: number) {
-  const steps: Array<{ a: number; b: number; r: number }> = []
-  let a = Math.abs(Math.floor(a0))
-  let b = Math.abs(Math.floor(b0))
-  if (a < b) [a, b] = [b, a]
-  while (b !== 0) {
-    const r = a % b
-    steps.push({ a, b, r })
-    a = b
-    b = r
-  }
-  return { gcd: a, steps }
+interface GcdStep {
+    a: number;
+    b: number;
+    remainder: number;
+    description: string;
 }
 
-export default function GcdSandbox() {
-  const [x, setX] = useState(252)
-  const [y, setY] = useState(198)
-  const result = useMemo(() => gcdSteps(x, y), [x, y])
+const GcdSandbox: React.FC = () => {
+    const [numA, setNumA] = useState<number>(48);
+    const [numB, setNumB] = useState<number>(18);
+    const [steps, setSteps] = useState<GcdStep[]>([]);
+    const [gcd, setGcd] = useState<number | null>(null);
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          GCD — Euclid
-          <code className="text-xs font-mono text-muted-foreground">gcd(a, b)</code>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="a">a</Label>
-            <Input id="a" type="number" value={x} onChange={(e) => setX(Number(e.target.value || 0))} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="b">b</Label>
-            <Input id="b" type="number" value={y} onChange={(e) => setY(Number(e.target.value || 0))} />
-          </div>
-        </div>
-        <div className="rounded border p-3 text-sm">
-          <div className="mb-2 text-muted-foreground">Langkah</div>
-          <div className="grid grid-cols-3 gap-2 text-center font-mono text-xs">
-            <div>a</div>
-            <div>b</div>
-            <div>r</div>
-            {result.steps.map((s, i) => (
-              <Fragment key={i}>
-                <div>{s.a}</div>
-                <div>{s.b}</div>
-                <div>{s.r}</div>
-              </Fragment>
-            ))}
-          </div>
-        </div>
-        <div className="rounded bg-muted p-3">
-          <div className="text-sm text-muted-foreground">Hasil</div>
-          <div className="text-2xl font-semibold">{result.gcd}</div>
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
+    const runEuclideanAlgorithm = () => {
+        let a = Math.abs(numA);
+        let b = Math.abs(numB);
+        const newSteps: GcdStep[] = [];
+
+        if (a === 0 || b === 0) {
+            setGcd(a + b);
+            newSteps.push({ a, b, remainder: 0, description: "Salah satu angka adalah 0. FPB adalah angka lainnya." });
+            setSteps(newSteps);
+            return;
+        }
+
+        if (b > a) {
+            [a, b] = [b, a]; // ensure a >= b
+        }
+
+        while (b !== 0) {
+            const remainder = a % b;
+            newSteps.push({ a, b, remainder, description: `${a} = ${Math.floor(a / b)} * ${b} + ${remainder}` });
+            a = b;
+            b = remainder;
+        }
+
+        setGcd(a);
+        newSteps.push({ a, b: 0, remainder: 0, description: `Sisa adalah 0. FPB adalah sisa non-nol terakhir, yaitu ${a}.` });
+        setSteps(newSteps);
+    };
+
+    return (
+        <Card className="max-w-md mx-auto">
+            <CardHeader>
+                <CardTitle>Visualisasi Algoritma Euklides (FPB)</CardTitle>
+                <CardDescription>Lihat bagaimana FPB dari dua angka ditemukan langkah demi langkah.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div className="flex gap-4">
+                    <div>
+                        <Label htmlFor="numA">Angka A</Label>
+                        <Input id="numA" type="number" value={numA} onChange={e => setNumA(Number(e.target.value))} />
+                    </div>
+                    <div>
+                        <Label htmlFor="numB">Angka B</Label>
+                        <Input id="numB" type="number" value={numB} onChange={e => setNumB(Number(e.target.value))} />
+                    </div>
+                </div>
+                <Button onClick={runEuclideanAlgorithm}>Cari FPB</Button>
+                {steps.length > 0 && (
+                    <div className="pt-4 space-y-2">
+                        <h3 className="font-semibold">Langkah-langkah:</h3>
+                        <ul className="list-disc pl-5 text-sm">
+                            {steps.map((step, index) => (
+                                <li key={index}>{step.description}</li>
+                            ))}
+                        </ul>
+                        {gcd !== null && <p className="font-bold text-lg">FPB adalah: {gcd}</p>}
+                    </div>
+                )}
+            </CardContent>
+        </Card>
+    );
+};
+
+export default GcdSandbox;

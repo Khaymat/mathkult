@@ -4,6 +4,9 @@ import GeometricSeriesSandbox from "@/components/geometric-series-sandbox"
 import SigmaSandbox from "@/components/sigma-sandbox"
 import FactorsSandbox from "@/components/factors-sandbox"
 import PathfindingSandbox from "@/components/path-finding-sandbox"
+import AnnuitySandbox from "@/components/annuity-sandbox"
+import GcdSandbox from "@/components/gcd-sandbox"
+import PiEstimationSandbox from "@/components/pi-estimation-sandbox"
 
 export type Praktek = {
   slug: string
@@ -55,6 +58,27 @@ const allPraktek: Praktek[] = [
     desc: "Visualisasi algoritma A* untuk menemukan jalur terpendek.",
     category: "Algoritma",
     component: <PathfindingSandbox />,
+  },
+  {
+    slug: "kalkulator-anuitas",
+    title: "Kalkulator Anuitas",
+    desc: "Hitung pembayaran bulanan untuk pinjaman atau hipotek.",
+    category: "Finansial",
+    component: <AnnuitySandbox />,
+  },
+  {
+    slug: "algoritma-euklides",
+    title: "Visualisasi FPB Euklides",
+    desc: "Lihat langkah-langkah untuk menemukan Faktor Persekutuan Terbesar.",
+    category: "Algoritma",
+    component: <GcdSandbox />,
+  },
+  {
+    slug: "estimasi-pi-monte-carlo",
+    title: "Estimasi Pi Monte Carlo",
+    desc: "Simulasikan nilai Pi dengan metode Monte Carlo.",
+    category: "Matematika",
+    component: <PiEstimationSandbox />,
   },
 ]
 
