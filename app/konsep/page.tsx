@@ -1,9 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getAllKonsep, Konsep } from "@/lib/konsep"
-
-"use client"
-
 import { useState } from "react"
 import AnimatedCard from "@/components/animated-card"
 import { Input } from "@/components/ui/input"
