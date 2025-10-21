@@ -9,7 +9,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@eslint/js": "^9.38.0",
     "@hookform/resolvers": "^3.9.1",
+    "@next/eslint-plugin-next": "^15.5.6",
     "@paper-design/shaders-react": "latest",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -50,7 +52,7 @@
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
     "next": "14.2.16",
-    "next-mdx-remote": "latest",
+    "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.4",
     "react": "^18",
     "react-day-picker": "9.8.0",
@@ -58,10 +60,13 @@
     "react-hook-form": "^7.54.1",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
+    "rehype-katex": "^7.0.1",
     "remark-gfm": "latest",
+    "remark-math": "^6.0.0",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "typescript-eslint": "^8.46.2",
     "vaul": "^0.9.6",
     "zod": "^3.24.1"
   },

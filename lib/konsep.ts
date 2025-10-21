@@ -26,10 +26,13 @@ export type Konsep = {
 }
 
 export function getAllKonsep(): Konsep[] {
-  const files = fs.readdirSync(kontenDir)
-  const allKonsepData = files.map((fileName) => {
-    const slug = fileName.replace(/\\.mdx$/, "")
-    const filePath = path.join(kontenDir, fileName)
+  // Read directory names as slugs
+  const slugs = fs.readdirSync(kontenDir).filter(file =>
+    fs.statSync(path.join(kontenDir, file)).isDirectory()
+  );
+
+  const allKonsepData = slugs.map((slug) => {
+    const filePath = path.join(kontenDir, slug, 'index.mdx')
     const fileContent = fs.readFileSync(filePath, "utf8")
     const matterResult = matter(fileContent)
 
@@ -50,7 +53,8 @@ export function getAllKonsep(): Konsep[] {
 }
 
 export function getKonsepBySlug(slug: string): Konsep | undefined {
-  const filePath = path.join(kontenDir, `${slug}.mdx`)
+  // Path now points to index.mdx within a folder
+  const filePath = path.join(kontenDir, slug, 'index.mdx')
   if (!fs.existsSync(filePath)) {
     return undefined
   }
