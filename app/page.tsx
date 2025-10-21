@@ -13,11 +13,11 @@ export default function HomePage() {
           Belajar itu nggak harus ribet.
         </h1>
 
-        <div className="space-y-4 text-lg text-muted-foreground">
-          <p>
+        <div className="space-y-4 text-lg">
+          <p className="text-muted-foreground">
             Pernah pusing sama rumus matematika yang aneh? Atau bingung algoritma itu sebenarnya apa? Tenang, kamu nggak sendirian.
           </p>
-          <p>
+          <p className="text-muted-foreground">
             Mathkult ada untuk membongkar semua itu. Kami percaya, konsep rumit bisa dijelaskan dengan cara yang asyik dan mudah dimengerti. Karena hidup udah ribet, masa belajar juga harus ribet? 😉
           </p>
         </div>

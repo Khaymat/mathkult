@@ -8,6 +8,7 @@ import "./globals.css"
 import SiteNavbar from "@/components/site-navbar"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
+import ClientOnly from "@/components/client-only"
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +47,9 @@ html {
           disableTransitionOnChange
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <SiteNavbar />
+            <ClientOnly>
+              <SiteNavbar />
+            </ClientOnly>
             <main className="min-h-screen">{children}</main>
             <Analytics />
           </Suspense>
