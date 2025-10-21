@@ -26,31 +26,34 @@ const GRID_SIZE = 20;
 const START_NODE = { row: 2, col: 2 };
 const END_NODE = { row: 17, col: 17 };
 
+type Status = 'idle' | 'running' | 'success' | 'fail';
+
 const PathfindingSandbox: React.FC = () => {
     const [grid, setGrid] = useState<number[][]>([]);
     const [path, setPath] = useState<{ row: number; col: number }[]>([]);
     const [visited, setVisited] = useState<Set<string>>(new Set());
-    const [isRunning, setIsRunning] = useState(false);
+    const [status, setStatus] = useState<Status>('idle');
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Function to stop any running animation
     const stopAnimation = () => {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
         }
-        setIsRunning(false);
+        if (status === 'running') {
+            setStatus('idle');
+        }
     };
 
     const resetGrid = () => {
         stopAnimation();
+        setStatus('idle');
         const newGrid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
-        // Add some random walls
         for (let i = 0; i < GRID_SIZE * GRID_SIZE * 0.2; i++) {
             const row = Math.floor(Math.random() * GRID_SIZE);
             const col = Math.floor(Math.random() * GRID_SIZE);
             if ((row !== START_NODE.row || col !== START_NODE.col) && (row !== END_NODE.row || col !== END_NODE.col)) {
-                newGrid[row][col] = 1; // 1 represents a wall
+                newGrid[row][col] = 1;
             }
         }
         setGrid(newGrid);
@@ -60,13 +63,11 @@ const PathfindingSandbox: React.FC = () => {
 
     useEffect(() => {
         resetGrid();
-        // Cleanup on unmount
         return () => stopAnimation();
     }, []);
 
     const toggleWall = (row: number, col: number) => {
-        if (isRunning) return; // Don't allow changes while running
-        // Prevent toggling start/end nodes
+        if (status === 'running') return;
         if ((row === START_NODE.row && col === START_NODE.col) || (row === END_NODE.row && col === END_NODE.col)) return;
 
         const newGrid = grid.map(r => [...r]);
@@ -79,19 +80,23 @@ const PathfindingSandbox: React.FC = () => {
     };
 
     const aStar = () => {
-        stopAnimation(); // Clear previous animation
+        stopAnimation();
         setPath([]);
         setVisited(new Set());
-        setIsRunning(true);
+        setStatus('running');
 
         const frontier = new PriorityQueue();
         frontier.enqueue(START_NODE, 0);
         const cameFrom: { [key: string]: { row: number; col: number } | null } = { [`${START_NODE.row}-${START_NODE.col}`]: null };
         const costSoFar: { [key: string]: number } = { [`${START_NODE.row}-${START_NODE.col}`]: 0 };
         const visitedNodes = new Set<string>();
+        let goalReached = false;
 
         intervalRef.current = setInterval(() => {
             if (frontier.isEmpty()) {
+                if (!goalReached) {
+                    setStatus('fail');
+                }
                 stopAnimation();
                 return;
             }
@@ -105,6 +110,8 @@ const PathfindingSandbox: React.FC = () => {
             setVisited(new Set(visitedNodes));
 
             if (current.row === END_NODE.row && current.col === END_NODE.col) {
+                goalReached = true;
+                setStatus('success');
                 stopAnimation();
                 let temp = current;
                 const newPath = [];
@@ -117,10 +124,8 @@ const PathfindingSandbox: React.FC = () => {
             }
 
             const neighbors = [
-                { row: current.row - 1, col: current.col },
-                { row: current.row + 1, col: current.col },
-                { row: current.row, col: current.col - 1 },
-                { row: current.row, col: current.col + 1 },
+                { row: current.row - 1, col: current.col }, { row: current.row + 1, col: current.col },
+                { row: current.row, col: current.col - 1 }, { row: current.row, col: current.col + 1 },
             ];
 
             for (const neighbor of neighbors) {
@@ -148,6 +153,12 @@ const PathfindingSandbox: React.FC = () => {
         return 'bg-gray-200 dark:bg-gray-700';
     };
 
+    const StatusMessage = () => {
+        if (status === 'success') return <p className="text-green-500 font-semibold">Jalur ditemukan!</p>;
+        if (status === 'fail') return <p className="text-red-500 font-semibold">Jalur tidak ditemukan.</p>;
+        return null;
+    };
+
     return (
         <Card className="max-w-max mx-auto">
             <CardHeader>
@@ -161,14 +172,17 @@ const PathfindingSandbox: React.FC = () => {
                             <div
                                 key={`${rowIndex}-${colIndex}`}
                                 onClick={() => toggleWall(rowIndex, colIndex)}
-                                className={`w-5 h-5 ${getNodeClasses(rowIndex, colIndex)} ${!isRunning ? 'cursor-pointer' : ''}`}
+                                className={`w-5 h-5 ${getNodeClasses(rowIndex, colIndex)} ${status !== 'running' ? 'cursor-pointer' : ''}`}
                             />
                         ))
                     )}
                 </div>
                 <div className="flex gap-4">
-                    <Button onClick={aStar} disabled={isRunning}>Mulai A* Search</Button>
+                    <Button onClick={aStar} disabled={status === 'running'}>Mulai A* Search</Button>
                     <Button variant="outline" onClick={resetGrid}>Reset Grid</Button>
+                </div>
+                <div className="h-6">
+                    <StatusMessage />
                 </div>
             </CardContent>
         </Card>

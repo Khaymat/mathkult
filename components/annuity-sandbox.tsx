@@ -11,17 +11,34 @@ const AnnuitySandbox: React.FC = () => {
     const [interestRate, setInterestRate] = useState<number>(5);
     const [years, setYears] = useState<number>(30);
     const [monthlyPayment, setMonthlyPayment] = useState<string>('');
+    const [error, setError] = useState<string>('');
 
     const calculateAnnuity = () => {
+        setError('');
+        setMonthlyPayment('');
+
         const p = principal;
         const r = interestRate / 100 / 12;
         const n = years * 12;
 
-        if (p > 0 && r > 0 && n > 0) {
-            const payment = p * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        if (isNaN(p) || p <= 0) {
+            setError('Jumlah pinjaman harus lebih besar dari 0.');
+            return;
+        }
+        if (isNaN(interestRate) || interestRate <= 0) {
+            setError('Suku bunga harus lebih besar dari 0.');
+            return;
+        }
+        if (isNaN(years) || years <= 0) {
+            setError('Jangka waktu harus lebih besar dari 0.');
+            return;
+        }
+
+        const payment = p * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        if (isFinite(payment)) {
             setMonthlyPayment(payment.toFixed(2));
         } else {
-            setMonthlyPayment('Input tidak valid');
+            setError('Hasil perhitungan tidak valid. Periksa kembali input Anda.');
         }
     };
 
@@ -33,17 +50,18 @@ const AnnuitySandbox: React.FC = () => {
             <CardContent className="space-y-4">
                 <div>
                     <Label htmlFor="principal">Jumlah Pinjaman (P)</Label>
-                    <Input id="principal" type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))} />
+                    <Input id="principal" type="number" value={principal} onChange={e => setPrincipal(parseFloat(e.target.value))} />
                 </div>
                 <div>
                     <Label htmlFor="interest">Suku Bunga Tahunan (%)</Label>
-                    <Input id="interest" type="number" value={interestRate} onChange={e => setInterestRate(Number(e.target.value))} />
+                    <Input id="interest" type="number" value={interestRate} onChange={e => setInterestRate(parseFloat(e.target.value))} />
                 </div>
                 <div>
                     <Label htmlFor="years">Jangka Waktu (Tahun)</Label>
-                    <Input id="years" type="number" value={years} onChange={e => setYears(Number(e.target.value))} />
+                    <Input id="years" type="number" value={years} onChange={e => setYears(parseFloat(e.target.value))} />
                 </div>
                 <Button onClick={calculateAnnuity}>Hitung Pembayaran Bulanan</Button>
+                {error && <p className="text-sm text-red-500">{error}</p>}
                 {monthlyPayment && (
                     <div className="pt-4">
                         <h3 className="font-semibold">Pembayaran Bulanan Anda:</h3>

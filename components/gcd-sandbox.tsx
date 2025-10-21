@@ -18,18 +18,34 @@ const GcdSandbox: React.FC = () => {
     const [numB, setNumB] = useState<number>(18);
     const [steps, setSteps] = useState<GcdStep[]>([]);
     const [gcd, setGcd] = useState<number | null>(null);
+    const [error, setError] = useState<string>('');
 
     const handleClear = () => {
         setNumA(48);
         setNumB(18);
         setSteps([]);
         setGcd(null);
+        setError('');
     };
 
     const runEuclideanAlgorithm = () => {
+        setSteps([]);
+        setGcd(null);
+        setError('');
+
+        if (!Number.isInteger(numA) || !Number.isInteger(numB)) {
+            setError('Input harus berupa bilangan bulat.');
+            return;
+        }
+
         let a = Math.abs(numA);
         let b = Math.abs(numB);
         const newSteps: GcdStep[] = [];
+
+        if (a === 0 && b === 0) {
+            setError('Kedua angka tidak boleh nol.');
+            return;
+        }
 
         if (a === 0 || b === 0) {
             setGcd(a + b);
@@ -64,17 +80,18 @@ const GcdSandbox: React.FC = () => {
                 <div className="flex gap-4">
                     <div>
                         <Label htmlFor="numA">Angka A</Label>
-                        <Input id="numA" type="number" value={numA} onChange={e => setNumA(Number(e.target.value))} />
+                        <Input id="numA" type="number" value={numA} onChange={e => setNumA(parseInt(e.target.value, 10))} />
                     </div>
                     <div>
                         <Label htmlFor="numB">Angka B</Label>
-                        <Input id="numB" type="number" value={numB} onChange={e => setNumB(Number(e.target.value))} />
+                        <Input id="numB" type="number" value={numB} onChange={e => setNumB(parseInt(e.target.value, 10))} />
                     </div>
                 </div>
                 <div className="flex gap-4">
                     <Button onClick={runEuclideanAlgorithm}>Cari FPB</Button>
                     <Button variant="outline" onClick={handleClear}>Hapus</Button>
                 </div>
+                {error && <p className="text-sm text-red-500">{error}</p>}
                 {steps.length > 0 && (
                     <div className="pt-4 space-y-2">
                         <h3 className="font-semibold">Langkah-langkah:</h3>
