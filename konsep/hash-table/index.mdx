@@ -1,0 +1,39 @@
+---
+title: "Hash Table"
+category: "Algoritma"
+summary: "Struktur data yang mengimplementasikan tipe data abstrak array asosiatif, sebuah struktur yang dapat memetakan kunci ke nilai untuk pencarian yang sangat cepat."
+faq:
+  - question: "Apa itu 'hash collision'?"
+    answer: "Hash collision (tabrakan hash) terjadi ketika dua kunci yang berbeda menghasilkan nilai hash yang sama. Karena hash table memiliki jumlah slot yang terbatas, tabrakan tidak dapat dihindari. Penanganan tabrakan yang baik, seperti chaining atau open addressing, sangat penting untuk menjaga kinerja hash table."
+  - question: "Kapan saya harus menggunakan Hash Table?"
+    answer: "Gunakan hash table (atau implementasinya seperti Dictionary di Python, HashMap di Java) setiap kali Anda memerlukan akses, penyisipan, dan penghapusan elemen yang sangat cepat. Ini ideal untuk tugas-tugas seperti caching, mengindeks data dalam database, atau menghitung frekuensi item dalam sebuah koleksi."
+---
+
+# Pencarian Cepat dengan Hash Table
+
+Sebuah **Hash Table**, atau Peta Hash, adalah salah satu struktur data yang paling kuat dan banyak digunakan dalam ilmu komputer. Fungsi utamanya adalah untuk menyimpan pasangan kunci-nilai (*key-value pairs*) dan menyediakan operasi pencarian, penyisipan, dan penghapusan dengan efisiensi waktu rata-rata yang luar biasa, yaitu **$O(1)$** atau waktu konstan.
+
+## Bagaimana Cara Kerjanya?
+
+Keajaiban di balik hash table adalah **fungsi hash**. Fungsi ini mengambil sebuah kunci (misalnya, sebuah string seperti nama pengguna) dan mengubahnya menjadi sebuah indeks (sebuah bilangan bulat), yang menunjuk ke sebuah "slot" atau "bucket" dalam sebuah array.
+
+Prosesnya adalah sebagai berikut:
+1.  **Penyisipan**: Untuk menyimpan pasangan `(kunci, nilai)`, fungsi hash diterapkan pada `kunci` untuk mendapatkan indeks. `Nilai` kemudian disimpan di lokasi array pada indeks tersebut.
+2.  **Pencarian**: Untuk mencari `nilai` yang terkait dengan `kunci`, fungsi hash diterapkan lagi pada `kunci` untuk mendapatkan indeks. Kemudian, algoritma langsung melompat ke indeks tersebut untuk mengambil `nilai`.
+
+Karena proses ini tidak memerlukan iterasi melalui elemen lain, operasinya sangat cepat, tidak peduli seberapa banyak data yang disimpan.
+
+## Menangani Tabrakan (Collisions)
+
+Masalah muncul ketika dua kunci yang berbeda menghasilkan indeks yang sama. Ini disebut **tabrakan hash**. Ada beberapa strategi umum untuk menanganinya:
+
+- **Separate Chaining (Rantai Terpisah)**: Setiap slot dalam array tidak hanya menyimpan satu nilai, tetapi sebuah struktur data lain (biasanya *linked list*) yang berisi semua nilai yang hash-nya sama. Ketika terjadi tabrakan, nilai baru ditambahkan ke akhir *linked list*.
+- **Open Addressing (Pengalamatan Terbuka)**: Jika sebuah slot sudah terisi, algoritma akan mencari slot kosong berikutnya sesuai dengan aturan tertentu (misalnya, slot berikutnya secara linier) dan menempatkan nilai di sana.
+
+## Aplikasi di Dunia Nyata
+
+Hash table ada di mana-mana dalam perangkat lunak modern:
+- **Database**: Untuk mengindeks dan mengambil data dengan cepat.
+- **Cache**: Untuk menyimpan hasil komputasi yang mahal agar dapat diakses kembali dengan cepat.
+- **Bahasa Pemrograman**: Implementasi bawaan seperti `dict` di Python, `Map` di JavaScript, dan `HashMap` di Java semuanya menggunakan hash table di bawahnya.
+- **Kompilator**: Untuk melacak variabel dan fungsi dalam sebuah program.
