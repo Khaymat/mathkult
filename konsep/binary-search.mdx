@@ -1,0 +1,37 @@
+---
+title: "Binary Search"
+category: "Algoritma"
+summary: "Algoritma pencarian yang efisien yang menemukan posisi nilai target dalam array yang diurutkan dengan membagi dua interval pencarian secara berulang."
+faq:
+  - question: "Apa prasyarat utama untuk menggunakan binary search?"
+    answer: "Prasyarat paling penting adalah data (biasanya array atau daftar) harus sudah dalam keadaan terurut. Jika data tidak terurut, binary search akan memberikan hasil yang salah atau tidak akan menemukan elemen yang ada."
+  - question: "Mengapa binary search jauh lebih cepat daripada linear search?"
+    answer: "Binary search memiliki kompleksitas waktu logaritmik, O(log n), sementara linear search memiliki kompleksitas waktu linier, O(n). Ini berarti untuk setiap penambahan elemen, linear search membutuhkan satu langkah lagi, sedangkan binary search hanya membutuhkan sebagian kecil dari langkah tambahan. Pada set data besar, perbedaannya sangat besar."
+---
+
+# Efisiensi Pencarian: Binary Search
+
+**Binary Search** (pencarian biner) adalah algoritma pencarian yang sangat cepat dan efisien. Metode kerjanya adalah dengan berulang kali membagi interval pencarian menjadi dua bagian. Jika nilai dari item pencarian kurang dari item di tengah interval, perkecil interval ke bagian bawah. Jika tidak, perkecil interval ke bagian atas. Proses ini terus berlanjut hingga nilai ditemukan atau intervalnya kosong.
+
+## Cara Kerja Algoritma
+
+Mari kita ilustrasikan dengan sebuah contoh. Misalkan kita mencari angka `23` dalam array yang sudah diurutkan berikut:
+`[4, 8, 15, 16, 23, 42, 50, 71]`
+
+1.  **Langkah 1**: Ambil elemen tengah. Panjang array adalah 8. Elemen tengahnya adalah `(0+7)/2 = 3.5`, kita bulatkan ke bawah menjadi indeks `3`, yaitu `16`.
+    - Apakah `23` sama dengan `16`? Tidak.
+    - Apakah `23` lebih besar dari `16`? Ya.
+    - Maka, kita abaikan seluruh paruh kiri array, termasuk `16`.
+
+2.  **Langkah 2**: Interval pencarian kita sekarang adalah `[23, 42, 50, 71]`. Elemen tengahnya adalah `(4+7)/2 = 5.5`, dibulatkan ke bawah menjadi indeks `5`, yaitu `42`.
+    - Apakah `23` sama dengan `42`? Tidak.
+    - Apakah `23` lebih kecil dari `42`? Ya.
+    - Maka, kita abaikan seluruh paruh kanan, termasuk `42`.
+
+3.  **Langkah 3**: Interval pencarian kita sekarang adalah `[23]`. Elemen tengahnya adalah `23`.
+    - Apakah `23` sama dengan `23`? Ya.
+    - Nilai ditemukan di indeks `4`.
+
+## Kompleksitas Waktu
+
+Keunggulan utama dari binary search adalah kompleksitas waktunya, yaitu **$O(\\log n)$**. Ini berarti bahwa bahkan jika jumlah elemen dalam array berlipat ganda, algoritma hanya memerlukan satu langkah perbandingan tambahan untuk menemukan target. Hal ini membuatnya sangat cocok untuk aplikasi yang memerlukan pencarian cepat pada dataset yang sangat besar, seperti dalam database atau kamus.
