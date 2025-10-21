@@ -1,0 +1,41 @@
+---
+title: "Linked List"
+category: "Algoritma"
+summary: "Struktur data linier di mana elemen (node) tidak disimpan di lokasi memori yang berdekatan, melainkan dihubungkan menggunakan pointer."
+faq:
+  - question: "Apa keuntungan utama linked list dibandingkan array?"
+    answer: "Keuntungan utamanya adalah penyisipan dan penghapusan elemen yang efisien. Di linked list, Anda hanya perlu mengubah beberapa pointer, yang merupakan operasi O(1) (jika Anda sudah memiliki referensi ke node). Di array, menyisipkan atau menghapus elemen di tengah memerlukan penggeseran semua elemen berikutnya, yang merupakan operasi O(n)."
+  - question: "Apa kelemahan utama linked list?"
+    answer: "Kelemahan utamanya adalah kurangnya akses acak. Untuk mengakses elemen ke-i, Anda harus melintasi daftar dari awal, yang merupakan operasi O(n). Array, sebaliknya, menyediakan akses acak O(1) karena elemennya disimpan secara berurutan di memori."
+---
+
+# Struktur Data Dinamis: Linked List
+
+Sebuah **Linked List** (Daftar Tertaut) adalah salah satu struktur data paling fundamental dalam ilmu komputer. Berbeda dengan array, di mana elemen disimpan secara berurutan di memori, elemen dalam linked list—yang disebut **node**—dapat tersebar di mana saja di memori.
+
+Setiap node dalam linked list berisi dua hal:
+1.  **Data**: Nilai yang disimpan oleh node.
+2.  **Pointer (atau Link)**: Referensi ke node berikutnya dalam urutan.
+
+Node terakhir dalam daftar menunjuk ke `null`, yang menandakan akhir dari daftar.
+
+## Jenis-jenis Linked List
+
+Ada beberapa variasi umum dari linked list:
+
+- **Singly Linked List**: Bentuk paling dasar, di mana setiap node hanya memiliki satu pointer yang menunjuk ke node berikutnya. Traversing hanya bisa dilakukan ke satu arah (maju).
+- **Doubly Linked List**: Setiap node memiliki dua pointer: satu ke node berikutnya dan satu ke node sebelumnya. Ini memungkinkan traversal dua arah (maju dan mundur), tetapi dengan biaya memori tambahan untuk pointer kedua.
+- **Circular Linked List**: Node terakhir menunjuk kembali ke node pertama, membentuk sebuah lingkaran. Ini bisa berguna untuk aplikasi seperti penjadwalan round-robin.
+
+## Operasi Umum
+
+Operasi pada linked list berpusat pada manipulasi node dan pointer:
+
+- **Penyisipan (Insertion)**: Untuk menambahkan node baru, pointer dari node sebelumnya diubah untuk menunjuk ke node baru, dan pointer dari node baru diatur untuk menunjuk ke node berikutnya. Operasi ini sangat efisien, $O(1)$.
+- **Penghapusan (Deletion)**: Untuk menghapus node, pointer dari node sebelumnya diubah untuk "melompati" node yang akan dihapus dan langsung menunjuk ke node setelahnya. Operasi ini juga $O(1)$.
+- **Pencarian (Search)**: Untuk menemukan elemen, Anda harus memulai dari `head` (node pertama) dan mengikuti pointer satu per satu hingga elemen ditemukan atau Anda mencapai akhir daftar. Ini adalah operasi $O(n)$.
+- **Traversal**: Mengunjungi setiap node dalam daftar, biasanya dimulai dari `head` dan mengikuti pointer berikutnya hingga mencapai `null`.
+
+## Kapan Menggunakannya?
+
+Linked list sangat berguna dalam situasi di mana Anda tidak tahu berapa banyak item yang akan ada dalam daftar sebelumnya, dan di mana Anda akan sering melakukan operasi penyisipan dan penghapusan. Contohnya termasuk mengelola antrian tugas atau mengimplementasikan tumpukan (*stack*).
