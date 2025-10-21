@@ -4,7 +4,6 @@ import { useMemo, useState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
-import MathAutoRender from "@/components/math-auto-render"
 
 type Props = { mode?: "linear" | "square" } // linear: ∑k, square: ∑k^2
 
@@ -41,17 +40,15 @@ export default function SigmaSandbox({ mode = "linear" }: Props) {
           ))}
         </div>
 
-        <MathAutoRender>
-          <div className="rounded bg-muted p-3">
-            <div className="text-sm text-muted-foreground">Rumus</div>
-            <div className="text-sm">
-              {mode === "square"
-                ? "$$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$$"
-                : "$$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$$"}
-            </div>
-            <div className="mt-2 text-2xl font-semibold">{sum}</div>
+        <div className="rounded bg-muted p-3">
+          <div className="text-sm text-muted-foreground">Rumus</div>
+          <div className="text-sm">
+            {mode === "square"
+              ? "$$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$$"
+              : "$$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$$"}
           </div>
-        </MathAutoRender>
+          <div className="mt-2 text-2xl font-semibold">{sum}</div>
+        </div>
       </CardContent>
     </Card>
   )
