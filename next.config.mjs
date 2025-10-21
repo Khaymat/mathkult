@@ -20,4 +20,5 @@ const nextConfig = {
   },
 }
 
+// Trigger deployment
 export default nextConfig
