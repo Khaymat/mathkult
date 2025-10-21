@@ -1,0 +1,53 @@
+---
+title: "Rekursi"
+category: "Algoritma"
+summary: "Proses di mana sebuah fungsi memanggil dirinya sendiri sebagai subrutin untuk memecahkan masalah dengan membaginya menjadi instance yang lebih kecil dari masalah yang sama."
+faq:
+  - question: "Apa saja komponen penting dari fungsi rekursif?"
+    answer: "Setiap fungsi rekursif yang valid harus memiliki dua komponen utama: 1) **Base Case**: Kondisi yang menghentikan rekursi, mencegahnya berjalan selamanya. 2) **Recursive Step**: Bagian di mana fungsi memanggil dirinya sendiri, tetapi dengan input yang membawanya lebih dekat ke base case."
+  - question: "Apa itu 'stack overflow' dalam konteks rekursi?"
+    answer: "Stack overflow adalah error yang terjadi ketika rekursi terlalu dalam tanpa mencapai base case. Setiap panggilan fungsi memakan ruang di call stack memori. Jika terlalu banyak panggilan menumpuk, stack akan 'meluap', menyebabkan program crash. Ini adalah risiko utama dari rekursi yang tidak dirancang dengan baik."
+---
+
+# Kekuatan Rekursi dalam Pemrograman
+
+**Rekursi** adalah konsep yang kuat dalam ilmu komputer di mana sebuah fungsi menyelesaikan masalah dengan cara memanggil dirinya sendiri. Ide intinya adalah memecah masalah besar menjadi versi yang lebih kecil dan lebih sederhana dari masalah yang sama, hingga mencapai masalah yang begitu sederhana sehingga dapat diselesaikan secara langsung.
+
+## Struktur Fungsi Rekursif
+
+Setiap fungsi rekursif yang dirancang dengan baik harus memiliki dua bagian penting:
+
+1.  **Base Case (Kasus Dasar)**: Ini adalah kondisi di mana fungsi berhenti memanggil dirinya sendiri. Ini adalah solusi untuk versi masalah yang "paling sederhana". Tanpa *base case*, fungsi akan terus memanggil dirinya sendiri tanpa henti, yang akan menyebabkan *stack overflow error*.
+
+2.  **Recursive Step (Langkah Rekursif)**: Ini adalah bagian di mana fungsi memanggil dirinya sendiri, tetapi dengan argumen yang dimodifikasi yang membawanya selangkah lebih dekat ke *base case*.
+
+## Contoh Klasik: Faktorial
+
+Perhitungan faktorial adalah contoh buku teks untuk rekursi. Faktorial dari $n$ ($n!$) adalah $n \\times (n-1) \\times (n-2) \\times \\dots \\times 1$.
+
+Kita dapat mendefinisikannya secara rekursif:
+- **Base Case**: $0! = 1$
+- **Recursive Step**: $n! = n \\times (n-1)!$
+
+Dalam kode, ini akan terlihat seperti:
+```javascript
+function factorial(n) {
+  // Base Case
+  if (n === 0) {
+    return 1;
+  }
+  // Recursive Step
+  else {
+    return n * factorial(n - 1);
+  }
+}
+```
+
+## Rekursi vs. Iterasi
+
+Setiap masalah yang dapat diselesaikan secara rekursif juga dapat diselesaikan secara iteratif (menggunakan perulangan seperti `for` atau `while`).
+
+- **Rekursi**: Seringkali menghasilkan kode yang lebih pendek, lebih elegan, dan lebih mudah dibaca, terutama untuk masalah yang secara inheren rekursif seperti struktur data pohon (*tree*). Namun, bisa lebih lambat dan memakan lebih banyak memori.
+- **Iterasi**: Umumnya lebih cepat dan lebih efisien dalam penggunaan memori karena tidak menambah tumpukan panggilan fungsi. Namun, kodenya bisa menjadi lebih panjang dan lebih sulit untuk dipahami untuk beberapa masalah.
+
+Memilih antara rekursi dan iterasi seringkali merupakan trade-off antara kejelasan kode dan kinerja.
