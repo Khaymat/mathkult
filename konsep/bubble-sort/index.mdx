@@ -1,0 +1,39 @@
+---
+title: "Bubble Sort"
+category: "Algoritma"
+summary: "Algoritma pengurutan sederhana yang berulang kali melangkah melalui daftar, membandingkan elemen yang berdekatan dan menukarnya jika urutannya salah."
+faq:
+  - question: "Mengapa Bubble Sort dianggap tidak efisien?"
+    answer: "Bubble Sort memiliki kompleksitas waktu rata-rata dan terburuk O(n²), yang berarti waktu eksekusinya meningkat secara kuadratik dengan jumlah elemen. Untuk set data yang besar, ini menjadi sangat lambat dibandingkan dengan algoritma yang lebih canggih seperti Merge Sort atau Quick Sort yang memiliki kompleksitas O(n log n)."
+  - question: "Apakah ada keuntungan menggunakan Bubble Sort?"
+    answer: "Meskipun tidak efisien, keuntungan utama Bubble Sort adalah kesederhanaannya. Algoritma ini sangat mudah dipahami dan diimplementasikan, menjadikannya alat pengajaran yang bagus untuk memperkenalkan konsep algoritma pengurutan."
+---
+
+# Memahami Bubble Sort
+
+**Bubble Sort** adalah salah satu algoritma pengurutan paling sederhana. Cara kerjanya adalah dengan berulang kali "menggelembungkan" elemen terbesar ke posisi akhirnya di setiap iterasi. Algoritma ini membandingkan setiap pasangan elemen yang berdekatan dan menukarnya jika urutannya salah. Proses ini diulangi sampai seluruh daftar terurut.
+
+## Contoh Langkah-demi-Langkah
+
+Mari kita urutkan array `[5, 1, 4, 2, 8]` menggunakan Bubble Sort:
+
+**Iterasi Pertama:**
+- `[5, 1, 4, 2, 8]` → `[1, 5, 4, 2, 8]` (Tukar 5 dan 1)
+- `[1, 5, 4, 2, 8]` → `[1, 4, 5, 2, 8]` (Tukar 5 dan 4)
+- `[1, 4, 5, 2, 8]` → `[1, 4, 2, 5, 8]` (Tukar 5 dan 2)
+- `[1, 4, 2, 5, 8]` → `[1, 4, 2, 5, 8]` (8 sudah lebih besar dari 5, tidak ada tukar)
+*Setelah iterasi pertama, elemen terbesar (8) berada di posisi yang benar.*
+
+**Iterasi Kedua:**
+- `[1, 4, 2, 5, 8]` → `[1, 4, 2, 5, 8]`
+- `[1, 4, 2, 5, 8]` → `[1, 2, 4, 5, 8]` (Tukar 4 dan 2)
+- `[1, 2, 4, 5, 8]` → `[1, 2, 4, 5, 8]`
+*Setelah iterasi kedua, elemen terbesar kedua (5) berada di posisi yang benar.*
+
+Proses ini berlanjut hingga tidak ada lagi pertukaran yang terjadi dalam satu iterasi penuh, yang menandakan bahwa array telah terurut.
+
+## Kompleksitas dan Kinerja
+
+Kompleksitas waktu dari Bubble Sort adalah **$O(n^2)$** (kuadratik) dalam kasus rata-rata dan terburuk. Ini karena untuk setiap elemen dalam daftar, algoritma harus melakukan perbandingan dengan hampir semua elemen lainnya.
+
+Meskipun sederhana, kinerjanya yang buruk membuatnya tidak praktis untuk digunakan dalam aplikasi dunia nyata dengan set data yang cukup besar. Namun, ia tetap menjadi contoh klasik dalam pendidikan ilmu komputer karena kemudahan implementasinya.

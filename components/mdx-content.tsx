@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
-import MathAutoRender from "@/components/math-auto-render"
+import remarkMath from "remark-math"
+import rehypeKatex from "rehype-katex"
 
 type Props = {
   source: string
@@ -8,17 +9,16 @@ type Props = {
 
 export default function MdxContent({ source }: Props) {
   return (
-    <MathAutoRender key={source}>
-      <article className="prose prose-neutral max-w-none dark:prose-invert">
-        <MDXRemote
-          source={source}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
-            },
-          }}
-        />
-      </article>
-    </MathAutoRender>
+    <article className="prose dark:prose-invert max-w-none">
+      <MDXRemote
+        source={source}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [remarkGfm, remarkMath],
+            rehypePlugins: [rehypeKatex],
+          },
+        }}
+      />
+    </article>
   )
 }

@@ -1,0 +1,50 @@
+---
+title: "Faktorial"
+category: "Matematika"
+summary: "Produk dari semua bilangan bulat positif hingga bilangan bulat tertentu, dilambangkan dengan tanda seru (!)."
+faq:
+  - question: "Mengapa faktorial dari 0 (0!) didefinisikan sebagai 1?"
+    answer: "Meskipun tampaknya tidak intuitif, 0! = 1 adalah sebuah konvensi yang membuat banyak rumus matematika, terutama dalam kombinatorika, bekerja secara konsisten. Misalnya, ada tepat satu cara untuk mengatur himpunan kosong, yaitu tidak melakukan apa-apa."
+  - question: "Apa itu aproksimasi Stirling untuk faktorial?"
+    answer: "Untuk nilai n yang sangat besar, menghitung n! secara langsung menjadi sulit. Aproksimasi Stirling adalah rumus yang memberikan perkiraan yang sangat baik: n! ≈ sqrt(2πn) * (n/e)ⁿ. Ini sangat berguna dalam fisika statistik dan teori probabilitas."
+---
+
+# Konsep Fundamental: Faktorial
+
+Dalam matematika, **faktorial** dari bilangan bulat non-negatif $n$, yang dilambangkan dengan $n!$, adalah produk dari semua bilangan bulat positif dari 1 hingga $n$.
+
+## Definisi
+
+Definisi formal dari faktorial adalah:
+
+$$ n! = n \\times (n-1) \\times (n-2) \\times \\dots \\times 3 \\times 2 \\times 1 $$
+
+Sebagai contoh:
+- $1! = 1$
+- $2! = 2 \\times 1 = 2$
+- $3! = 3 \\times 2 \\times 1 = 6$
+- $5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$
+
+Berdasarkan konvensi, faktorial dari 0 didefinisikan sebagai 1:
+$$ 0! = 1 $$
+
+## Definisi Rekursif
+
+Faktorial juga dapat didefinisikan secara rekursif, yang sering kali lebih elegan dalam konteks ilmu komputer:
+- $0! = 1$
+- $n! = n \\times (n-1)!$ untuk $n > 0$
+
+Misalnya, untuk menghitung $4!$:
+- $4! = 4 \\times 3!$
+- $3! = 3 \\times 2!$
+- $2! = 2 \\times 1!$
+- $1! = 1 \\times 0! = 1$
+- Jadi, $4! = 4 \\times 3 \\times 2 \\times 1 = 24$.
+
+## Aplikasi
+
+Faktorial sangat penting dalam bidang **kombinatorika**, cabang matematika yang berurusan dengan penghitungan. Secara spesifik, $n!$ adalah jumlah cara yang berbeda untuk mengatur $n$ objek yang berbeda dalam sebuah urutan. Ini dikenal sebagai **permutasi**.
+
+Misalnya, jika Anda memiliki tiga buku (A, B, C), ada $3! = 6$ cara berbeda untuk menyusunnya di rak: (ABC, ACB, BAC, BCA, CAB, CBA).
+
+Faktorial juga muncul dalam banyak area lain dari matematika, termasuk kalkulus (dalam deret Taylor) dan teori probabilitas.

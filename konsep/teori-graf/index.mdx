@@ -1,0 +1,40 @@
+---
+title: "Teori Graf"
+category: "Algoritma"
+summary: "Struktur yang terdiri dari himpunan simpul (vertex) dan himpunan sisi (edge) yang menghubungkan pasangan simpul, digunakan untuk memodelkan hubungan."
+faq:
+  - question: "Apa perbedaan antara graf berarah dan tidak berarah?"
+    answer: "Dalam graf tidak berarah, sisi (edge) antara dua simpul bersifat dua arah (misalnya, pertemanan di Facebook). Dalam graf berarah (digraph), sisi memiliki arah (misalnya, 'mengikuti' di Twitter, di mana A mengikuti B tidak berarti B mengikuti A). Ini direpresentasikan dengan panah."
+  - question: "Apa contoh masalah dunia nyata yang bisa diselesaikan dengan teori graf?"
+    answer: "Banyak sekali. Contohnya termasuk menemukan rute terpendek di peta (seperti di Google Maps menggunakan algoritma Dijkstra), merancang jaringan komputer yang efisien, menganalisis jaringan sosial untuk menemukan orang yang berpengaruh, dan bahkan dalam penjadwalan (misalnya, memastikan ujian dengan mahasiswa yang sama tidak dijadwalkan bersamaan)."
+---
+
+# Memodelkan Hubungan: Teori Graf
+
+**Teori Graf** adalah cabang matematika dan ilmu komputer yang mempelajari **graf**. Sebuah graf adalah struktur matematika yang digunakan untuk memodelkan hubungan antara objek-objek. Graf terdiri dari dua komponen utama:
+1.  **Simpul (Vertices atau Nodes)**: Titik-titik yang merepresentasikan objek.
+2.  **Sisi (Edges atau Links)**: Garis yang menghubungkan pasangan simpul, merepresentasikan hubungan di antara mereka.
+
+## Jenis-jenis Graf
+
+Ada banyak jenis graf, tetapi beberapa yang paling umum meliputi:
+
+- **Graf Tidak Berarah (Undirected Graph)**: Sisi tidak memiliki arah. Jika ada sisi antara simpul A dan B, itu berarti A terhubung ke B dan B terhubung ke A. Contoh: Jaringan pertemanan di Facebook.
+- **Graf Berarah (Directed Graph atau Digraph)**: Sisi memiliki arah, biasanya digambarkan dengan panah. Sebuah sisi dari A ke B tidak secara otomatis berarti ada sisi dari B ke A. Contoh: Jaringan 'mengikuti' di Twitter.
+- **Graf Berbobot (Weighted Graph)**: Setiap sisi diberi nilai numerik (bobot), yang dapat merepresentasikan biaya, jarak, atau kapasitas. Contoh: Peta jalan di mana bobot sisi adalah jarak antara dua kota.
+- **Graf Siklik vs. Asiklik**: Graf siklik mengandung setidaknya satu jalur yang dimulai dan berakhir di simpul yang sama. Graf asiklik tidak memiliki siklus. Graf berarah asiklik (DAG) sangat penting dalam ilmu komputer.
+
+## Mengapa Graf Begitu Berguna?
+
+Kekuatan graf terletak pada kemampuannya untuk mengabstraksikan masalah dunia nyata yang kompleks menjadi model yang sederhana dan dapat dianalisis secara matematis. Hampir semua masalah yang melibatkan koneksi atau hubungan dapat dimodelkan sebagai masalah graf.
+
+## Algoritma Graf Populer
+
+Banyak algoritma terkenal dirancang untuk beroperasi pada graf:
+- **Algoritma Pencarian Jalan (Pathfinding)**:
+  - **Breadth-First Search (BFS)**: Menjelajahi semua tetangga pada level saat ini sebelum pindah ke level berikutnya. Berguna untuk menemukan jalur terpendek dalam graf tak berbobot.
+  - **Depth-First Search (DFS)**: Menjelajahi sejauh mungkin di sepanjang setiap cabang sebelum mundur.
+  - **Algoritma Dijkstra**: Menemukan jalur terpendek antara simpul dalam graf berbobot.
+  - **Algoritma A***: Varian dari Dijkstra yang menggunakan heuristik untuk mempercepat pencarian.
+
+Teori graf adalah landasan dari banyak teknologi modern, mulai dari logistik pengiriman dan optimasi jaringan hingga mesin pencari web dan analisis media sosial.
