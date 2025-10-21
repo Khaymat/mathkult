@@ -1,79 +1,76 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
-import { Button } from "@/components/ui/button"
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function AnnuitySandbox() {
-  const [P, setP] = useState(10000)
-  const [r, setR] = useState(10) // %
-  const [n, setN] = useState(12)
+const AnnuitySandbox: React.FC = () => {
+    const [principal, setPrincipal] = useState<number>(100000);
+    const [interestRate, setInterestRate] = useState<number>(5);
+    const [years, setYears] = useState<number>(30);
+    const [monthlyPayment, setMonthlyPayment] = useState<string>('');
+    const [error, setError] = useState<string>('');
 
-  const payment = useMemo(() => {
-    const i = r / 100
-    if (i === 0) return P / Math.max(1, n)
-    return (P * i) / (1 - Math.pow(1 + i, -Math.max(1, n)))
-  }, [P, r, n])
+    const calculateAnnuity = () => {
+        setError('');
+        setMonthlyPayment('');
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          Anuitas
-          <code className="text-xs font-mono text-muted-foreground">PMT = P·i / (1 - (1+i)^-n)</code>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="space-y-2">
-            <Label htmlFor="p">Pokok (P)</Label>
-            <Input id="p" type="number" value={P} onChange={(e) => setP(Number(e.target.value || 0))} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="r">Bunga % (i)</Label>
-            <div className="flex items-center gap-3">
-              <Slider value={[r]} min={0} max={100} step={0.25} onValueChange={([v]) => setR(v)} className="flex-1" />
-              <Input
-                id="r"
-                type="number"
-                value={r}
-                onChange={(e) => setR(Number(e.target.value || 0))}
-                className="w-24"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="n">Periode (n)</Label>
-            <div className="flex items-center gap-3">
-              <Slider value={[n]} min={1} max={360} step={1} onValueChange={([v]) => setN(v)} className="flex-1" />
-              <Input
-                id="n"
-                type="number"
-                value={n}
-                onChange={(e) => setN(Number(e.target.value || 1))}
-                className="w-24"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="rounded bg-muted p-4">
-          <div className="text-sm text-muted-foreground">Pembayaran per periode</div>
-          <div className="text-2xl font-semibold">Rp {payment.toFixed(2).toLocaleString()}</div>
-        </div>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            setP(10000)
-            setR(10)
-            setN(12)
-          }}
-        >
-          Reset Contoh
-        </Button>
-      </CardContent>
-    </Card>
-  )
-}
+        const p = principal;
+        const r = interestRate / 100 / 12;
+        const n = years * 12;
+
+        if (isNaN(p) || p <= 0) {
+            setError('Jumlah pinjaman harus lebih besar dari 0.');
+            return;
+        }
+        if (isNaN(interestRate) || interestRate <= 0) {
+            setError('Suku bunga harus lebih besar dari 0.');
+            return;
+        }
+        if (isNaN(years) || years <= 0) {
+            setError('Jangka waktu harus lebih besar dari 0.');
+            return;
+        }
+
+        const payment = p * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        if (isFinite(payment)) {
+            setMonthlyPayment(payment.toFixed(2));
+        } else {
+            setError('Hasil perhitungan tidak valid. Periksa kembali input Anda.');
+        }
+    };
+
+    return (
+        <Card className="max-w-md mx-auto">
+            <CardHeader>
+                <CardTitle>Kalkulator Pembayaran Anuitas</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div>
+                    <Label htmlFor="principal">Jumlah Pinjaman (P)</Label>
+                    <Input id="principal" type="number" value={principal} onChange={e => setPrincipal(parseFloat(e.target.value))} />
+                </div>
+                <div>
+                    <Label htmlFor="interest">Suku Bunga Tahunan (%)</Label>
+                    <Input id="interest" type="number" value={interestRate} onChange={e => setInterestRate(parseFloat(e.target.value))} />
+                </div>
+                <div>
+                    <Label htmlFor="years">Jangka Waktu (Tahun)</Label>
+                    <Input id="years" type="number" value={years} onChange={e => setYears(parseFloat(e.target.value))} />
+                </div>
+                <Button onClick={calculateAnnuity}>Hitung Pembayaran Bulanan</Button>
+                {error && <p className="text-sm text-red-500">{error}</p>}
+                {monthlyPayment && (
+                    <div className="pt-4">
+                        <h3 className="font-semibold">Pembayaran Bulanan Anda:</h3>
+                        <p className="text-2xl font-bold">${monthlyPayment}</p>
+                    </div>
+                )}
+            </CardContent>
+        </Card>
+    );
+};
+
+export default AnnuitySandbox;
