@@ -44,8 +44,8 @@ export default function SigmaSandbox({ mode = "linear" }: Props) {
           <div className="text-sm text-muted-foreground">Rumus</div>
           <div className="text-sm">
             {mode === "square"
-              ? "$$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$$"
-              : "$$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$$"}
+              ? "$$\\sum_{k=1}^{n} k^2 = \\\\frac{n(n+1)(2n+1)}{6}$$"
+              : "$$\\sum_{k=1}^{n} k = \\\\frac{n(n+1)}{2}$$"
           </div>
           <div className="mt-2 text-2xl font-semibold">{sum}</div>
         </div>
