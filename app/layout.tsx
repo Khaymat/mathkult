@@ -18,7 +18,10 @@ export const metadata: Metadata = {
   keywords: ["matematika", "algoritma", "logika", "finansial", "pemrograman", "belajar"],
   authors: [{ name: "Mathkult" }],
   creator: "Mathkult",
+<<<<<<< HEAD
   generator: "Mathkult",
+=======
+>>>>>>> main
 }
 
 export default function RootLayout({
@@ -27,7 +30,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
+<<<<<<< HEAD
     <html lang="id" className={`${architectsDaughter.variable}`} suppressHydrationWarning>
+=======
+    <html lang="id" suppressHydrationWarning>
+>>>>>>> main
       <head>
         <style>{`
 html {

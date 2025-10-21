@@ -2,12 +2,16 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 
+<<<<<<< HEAD
 const kontenDir = path.join(process.cwd(), "konsep")
 
 export type FAQ = {
   question: string
   answer: string
 }
+=======
+const kontenDir = path.join(process.cwd(), "konten/konsep")
+>>>>>>> main
 
 export type Konsep = {
   slug: string
@@ -15,7 +19,10 @@ export type Konsep = {
   category: "Matematika" | "Algoritma" | "Finansial"
   summary: string
   body: string
+<<<<<<< HEAD
   faq?: FAQ[]
+=======
+>>>>>>> main
 }
 
 export function getAllKonsep(): Konsep[] {
@@ -31,8 +38,12 @@ export function getAllKonsep(): Konsep[] {
       title: matterResult.data.title,
       category: matterResult.data.category,
       summary: matterResult.data.summary,
+<<<<<<< HEAD
       body: matterResult.content,
       faq: matterResult.data.faq || [],
+=======
+      body: matterResult.content, // Use only the content, not the full file
+>>>>>>> main
     } as Konsep
   })
   return allKonsepData
@@ -51,7 +62,11 @@ export function getKonsepBySlug(slug: string): Konsep | undefined {
     title: matterResult.data.title,
     category: matterResult.data.category,
     summary: matterResult.data.summary,
+<<<<<<< HEAD
     body: matterResult.content,
     faq: matterResult.data.faq || [],
+=======
+    body: matterResult.content, // Use only the content
+>>>>>>> main
   } as Konsep
 }

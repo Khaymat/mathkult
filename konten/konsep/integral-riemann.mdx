@@ -1,0 +1,31 @@
+---
+title: "Integral Riemann"
+category: "Matematika"
+summary: "Memahami definisi formal dari integral tentu menggunakan penjumlahan Riemann, konsep dasar di balik kalkulus integral."
+---
+
+# Integral Riemann
+
+Dalam matematika, **Integral Riemann** adalah definisi rigor mortis pertama dari integral sebuah fungsi pada sebuah interval.
+
+## Definisi
+
+Misalkan $f$ adalah fungsi non-negatif bernilai riil pada interval $[a, b]$, dan misalkan
+
+$$ S = \\{(x, y) \\in \\mathbb{R}^2 : a \\le x \\le b, 0 \\le y \\le f(x) \\} $$
+
+adalah wilayah di bawah grafik fungsi $f$ dan di atas interval $[a, b]$. Integral Riemann dari $f$ didefinisikan sebagai luas dari $S$.
+
+Untuk mendefinisikan ini, kita menggunakan partisi dari interval $[a, b]$:
+
+$$ a = x_0 < x_1 < x_2 < \\dots < x_n = b $$
+
+Jumlah Riemann dari fungsi $f$ terhadap partisi ini adalah:
+
+$$ \\sum_{i=1}^{n} f(t_i) \\Delta x_i $$
+
+di mana $\\Delta x_i = x_i - x_{i-1}$ dan $t_i \\in [x_{i-1}, x_i]$.
+
+Integral Riemann dari $f$ pada interval $[a, b]$ adalah nilai limit dari jumlah Riemann saat panjang partisi mendekati nol:
+
+$$ \\int_a^b f(x) \\,dx = \\lim_{\\|\\Delta x\\| \\to 0} \\sum_{i=1}^{n} f(t_i) \\Delta x_i $$

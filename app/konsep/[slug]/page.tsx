@@ -2,12 +2,15 @@ import MdxContent from "@/components/mdx-content"
 import BackButton from "@/components/back-button"
 import { getAllKonsep, getKonsepBySlug } from "@/lib/konsep"
 import { notFound } from "next/navigation"
+<<<<<<< HEAD
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+=======
+>>>>>>> main
 import { Metadata } from "next"
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -41,6 +44,7 @@ export default async function KonsepPage({ params }: { params: { slug: string } 
     "keywords": `${konsep.category}, matematika, algoritma, logika`
   }
 
+<<<<<<< HEAD
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -56,10 +60,15 @@ export default async function KonsepPage({ params }: { params: { slug: string } 
 
   return (
     <main className="container mx-auto px-4 py-10 max-w-4xl">
+=======
+  return (
+    <main className="container mx-auto px-4 py-10">
+>>>>>>> main
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+<<<<<<< HEAD
       {konsep.faq && konsep.faq.length > 0 && (
         <script
           type="application/ld+json"
@@ -88,6 +97,14 @@ export default async function KonsepPage({ params }: { params: { slug: string } 
           </Accordion>
         </section>
       )}
+=======
+      <div className="mb-8">
+        <BackButton href="/konsep" text="Kembali ke semua konsep" />
+      </div>
+      <article className="prose dark:prose-invert max-w-none">
+        <MdxContent source={konsep.body} />
+      </article>
+>>>>>>> main
     </main>
   )
 }

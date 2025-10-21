@@ -18,13 +18,17 @@ const GcdSandbox: React.FC = () => {
     const [numB, setNumB] = useState<number>(18);
     const [steps, setSteps] = useState<GcdStep[]>([]);
     const [gcd, setGcd] = useState<number | null>(null);
+<<<<<<< HEAD
     const [error, setError] = useState<string>('');
+=======
+>>>>>>> main
 
     const handleClear = () => {
         setNumA(48);
         setNumB(18);
         setSteps([]);
         setGcd(null);
+<<<<<<< HEAD
         setError('');
     };
 
@@ -38,15 +42,23 @@ const GcdSandbox: React.FC = () => {
             return;
         }
 
+=======
+    };
+
+    const runEuclideanAlgorithm = () => {
+>>>>>>> main
         let a = Math.abs(numA);
         let b = Math.abs(numB);
         const newSteps: GcdStep[] = [];
 
+<<<<<<< HEAD
         if (a === 0 && b === 0) {
             setError('Kedua angka tidak boleh nol.');
             return;
         }
 
+=======
+>>>>>>> main
         if (a === 0 || b === 0) {
             setGcd(a + b);
             newSteps.push({ a, b, remainder: 0, description: "Salah satu angka adalah 0. FPB adalah angka lainnya." });
@@ -80,18 +92,29 @@ const GcdSandbox: React.FC = () => {
                 <div className="flex gap-4">
                     <div>
                         <Label htmlFor="numA">Angka A</Label>
+<<<<<<< HEAD
                         <Input id="numA" type="number" value={numA} onChange={e => setNumA(parseInt(e.target.value, 10))} />
                     </div>
                     <div>
                         <Label htmlFor="numB">Angka B</Label>
                         <Input id="numB" type="number" value={numB} onChange={e => setNumB(parseInt(e.target.value, 10))} />
+=======
+                        <Input id="numA" type="number" value={numA} onChange={e => setNumA(Number(e.target.value))} />
+                    </div>
+                    <div>
+                        <Label htmlFor="numB">Angka B</Label>
+                        <Input id="numB" type="number" value={numB} onChange={e => setNumB(Number(e.target.value))} />
+>>>>>>> main
                     </div>
                 </div>
                 <div className="flex gap-4">
                     <Button onClick={runEuclideanAlgorithm}>Cari FPB</Button>
                     <Button variant="outline" onClick={handleClear}>Hapus</Button>
                 </div>
+<<<<<<< HEAD
                 {error && <p className="text-sm text-red-500">{error}</p>}
+=======
+>>>>>>> main
                 {steps.length > 0 && (
                     <div className="pt-4 space-y-2">
                         <h3 className="font-semibold">Langkah-langkah:</h3>
