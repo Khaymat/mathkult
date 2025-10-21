@@ -13,7 +13,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)"],
+        sans: ["var(--font-architects-daughter)"],
         mono: ["var(--font-mono)"],
         heading: ["var(--font-architects-daughter)"],
       },

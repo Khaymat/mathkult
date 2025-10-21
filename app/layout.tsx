@@ -28,16 +28,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" className={`${architectsDaughter.variable}`} suppressHydrationWarning>
+    <html lang="id" className={`${architectsDaughter.variable} ${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-sBpkE+ul98NE/uRTF3O/D2QBCFwqiYekOIqDlb/GtuoDBN2L9wV6Qh2quS/Q2/rO" crossOrigin="anonymous" />
       </head>
       <body>
         <ThemeProvider
