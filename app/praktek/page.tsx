@@ -2,13 +2,13 @@
 
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { getAllPraktek } from "@/lib/praktek"
+import { getAllPraktekData } from "@/lib/praktek-data"
 import AnimatedCard from "@/components/animated-card"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 
 export default function PraktekPage() {
-  const allPraktek = getAllPraktek()
+  const allPraktek = getAllPraktekData()
   const [search, setSearch] = useState("")
 
   const filteredPraktek = allPraktek.filter(

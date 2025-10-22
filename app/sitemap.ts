@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllKonsep } from '@/lib/konsep'
-import { getAllPraktek } from '@/lib/praktek'
+import { getAllPraktekData } from '@/lib/praktek-data'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://mathkult.com' // Replace with your actual domain
@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const praktekUrls = getAllPraktek().map(praktek => ({
+  const praktekUrls = getAllPraktekData().map(praktek => ({
     url: `${baseUrl}/praktek/${praktek.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as 'monthly',
