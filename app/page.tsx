@@ -24,7 +24,7 @@ export default function HomePage() {
             key={currentTheme}
             className="h-full w-full"
             stroke="hsl(var(--foreground) / 0.1)"
-            fill="transparent"
+            fill="hsl(var(--background))"
             strokeWidth={2}
             density={0.9}
             speed="slow"
