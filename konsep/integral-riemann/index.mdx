@@ -22,18 +22,18 @@ Jumlah luas dari semua persegi panjang ini akan memberikan aproksimasi dari luas
 ## Penjumlahan Riemann
 
 Untuk memformalkannya, kita mulai dengan **partisi** dari interval $[a, b]$, yang membaginya menjadi subinterval yang lebih kecil:
-$$ a = x_0 < x_1 < x_2 < \\dots < x_n = b $$
+$$ a = x_0 < x_1 < x_2 < \dots < x_n = b $$
 
-Di setiap subinterval $[x_{i-1}, x_i]$, kita memilih sebuah titik sampel $t_i$. Kita kemudian membuat sebuah persegi panjang dengan lebar $\\Delta x_i = x_i - x_{i-1}$ dan tinggi $f(t_i)$.
+Di setiap subinterval $[x_{i-1}, x_i]$, kita memilih sebuah titik sampel $t_i$. Kita kemudian membuat sebuah persegi panjang dengan lebar $\Delta x_i = x_i - x_{i-1}$ dan tinggi $f(t_i)$.
 
 **Jumlah Riemann** dari fungsi $f$ terhadap partisi ini adalah jumlah luas dari semua persegi panjang ini:
-$$ S_n = \\sum_{i=1}^{n} f(t_i) \\Delta x_i $$
+$$ S_n = \sum_{i=1}^{n} f(t_i) \Delta x_i $$
 
 ## Definisi Formal Integral
 
-Integral Riemann dari $f$ dari $a$ ke $b$, yang dilambangkan dengan $\\int_a^b f(x) \\,dx$, didefinisikan sebagai limit dari jumlah Riemann saat panjang partisi terbesar mendekati nol.
+Integral Riemann dari $f$ dari $a$ ke $b$, yang dilambangkan dengan $\int_a^b f(x) \,dx$, didefinisikan sebagai limit dari jumlah Riemann saat panjang partisi terbesar mendekati nol.
 
-$$ \\int_a^b f(x) \\,dx = \\lim_{\\|\\Delta x\\| \\to 0} \\sum_{i=1}^{n} f(t_i) \\Delta x_i $$
+$$ \int_a^b f(x) \,dx = \lim_{\|\Delta x\| \to 0} \sum_{i=1}^{n} f(t_i) \Delta x_i $$
 
 Jika limit ini ada dan tidak bergantung pada pilihan titik sampel $t_i$, maka fungsi $f$ dikatakan dapat diintegralkan secara Riemann pada interval $[a, b]$.
 
